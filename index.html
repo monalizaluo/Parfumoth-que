@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent Identity by L'Oréal Luxe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8f0ff;
+            --accent: #d4bfff;
+            --text: #333;
+            --loreal-gold: #c5a367;
+        }
 
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 850px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #333; /* Phone frame look */
+        }
+
+        .screen {
+            padding: 30px;
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Header Branding */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .brand-header h1 { font-family: 'Playfair Display', serif; font-size: 1.2rem; letter-spacing: 2px; margin: 0; }
+        .brand-header p { font-size: 0.7rem; color: #888; text-transform: uppercase; margin-top: 5px; }
+
+        /* Quiz Styles */
+        .quiz-option {
+            background: #fdfbff;
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .quiz-option:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+        /* Result Styles (Fragrantica Style) */
+        .scent-card {
+            text-align: center;
+        }
+        .product-img { width: 180px; margin: 20px auto; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
+        
+        .accord-bar {
+            height: 25px;
+            border-radius: 5px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 0.8rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .ratings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 20px;
+        }
+        .rating-box { font-size: 0.7rem; text-align: center; }
+
+        /* Ampoule Section */
+        .ampoule-lab {
+            margin-top: 20px;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .discount-code { font-size: 1.5rem; font-weight: bold; margin: 10px 0; }
+
+        button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <div id="quiz-screen" class="screen active">
+        <div class="brand-header">
+            <h1>L'ORÉAL LUXE</h1>
+            <p>Scent Identity Machine</p>
+        </div>
+        <h2 style="font-size: 1.5rem; margin-top: 40px;">Find your olfactive blueprint.</h2>
+        <p style="color: #666; font-size: 0.9rem;">What's your current vibe?</p>
+        
+        <div class="quiz-option" onclick="showResult('coquette')">🎀 Coquette (Floral & Sweet)</div>
+        <div class="quiz-option" onclick="showResult('clean')">☁️ Clean Girl (Fresh & Musky)</div>
+        <div class="quiz-option" onclick="showResult('emo')">🖤 Emo/Grunge (Spicy & Woody)</div>
+        <div class="quiz-option" onclick="showResult('boss'))️">💼 Executive (Citrus & Sharp)</div>
+    </div>
+
+    <div id="result-screen" class="screen">
+        <div class="brand-header">
+            <p id="user-vibe-tag">YOUR SCENT IDENTITY</p>
+            <h2 id="scent-name" style="margin: 0;">YSL Libre Eau</h2>
+        </div>
+
+        <div class="scent-card">
+            <img src="https://www.yslbeautyus.com/dw/image/v2/AABV_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw83748281/Libre_EDP/3614272648418_libre_eau_de_parfum_50ml.jpg?sw=600&sh=600&sm=fit" class="product-img" alt="Perfume">
+            
+            <div style="text-align: left; margin-bottom: 10px;"><small>Main Accords</small></div>
+            <div class="accord-bar" style="width: 100%; background: #e2f0ff;">White Floral</div>
+            <div class="accord-bar" style="width: 85%; background: #ffffd1;">Citrus</div>
+            <div class="accord-bar" style="width: 70%; background: #e6d1ff;">Lavender</div>
+            
+            <div class="ratings-grid">
+                <div class="rating-box">❄️<br>Winter<br><b>Low</b></div>
+                <div class="rating-box">☀️<br>Summer<br><b>High</b></div>
+                <div class="rating-box">🌙<br>Night<br><b>Med</b></div>
+            </div>
+        </div>
+
+        <div class="ampoule-lab">
+            <p style="margin: 0; font-size: 0.8rem;">AMPOULE LAB UNLOCKED</p>
+            <div class="discount-code" id="discount-val">15% OFF</div>
+            <p style="margin: 0; font-size: 0.7rem;">Your personalized refill is ready.</p>
+        </div>
+
+        <button onclick="location.reload()">Reset Identity</button>
+    </div>
+</div>
+
+<script>
+    function showResult(vibe) {
+        document.getElementById('quiz-screen').classList.remove('active');
+        document.getElementById('result-screen').classList.add('active');
+        
+        const scentTitle = document.getElementById('scent-name');
+        const vibeTag = document.getElementById('user-vibe-tag');
+        const discountVal = document.getElementById('discount-val');
+
+        // Randomly assign a discount based on your instruction (5, 10, or 15)
+        const discounts = ['5% OFF', '10% OFF', '15% OFF'];
+        discountVal.innerText = discounts[Math.floor(Math.random() * discounts.length)];
+
+        if(vibe === 'coquette') {
+            scentTitle.innerText = "Lancôme La Vie Est Belle";
+            vibeTag.innerText = "COQUETTE IDENTITY";
+        } else if (vibe === 'emo') {
+            scentTitle.innerText = "YSL Black Opium";
+            vibeTag.innerText = "GRUNGE IDENTITY";
+        } else if (vibe === 'clean') {
+            scentTitle.innerText = "Armani Acqua di Gioia";
+            vibeTag.innerText = "CLEAN GIRL IDENTITY";
+        } else {
+            scentTitle.innerText = "YSL Libre";
+            vibeTag.innerText = "EXECUTIVE IDENTITY";
+        }
+    }
+</script>
+
+</body>
+</html>
